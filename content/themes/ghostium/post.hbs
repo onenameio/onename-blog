@@ -1,9 +1,16 @@
 {{!< default}}
 
+{{#post}}
+<div class="post-header-image-wrapper">
+  <img src="{{image}}" class="post-header-image">
+</div>
+{{/post}}
+
 <section class="wrapper wrapper-post">
   <div class="wrapper-container">
     <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post {{post_class}}">
       {{#post}}
+        
         <section class="post-container">
           <header class="post-header">
             <ul class="post-meta-list">
