@@ -18,6 +18,7 @@
 .post-header-image {
     background-size: cover;
     background-position: center;
+    width: 100%;
 }
 .post-list-image-wrapper {
     width: 100%;
