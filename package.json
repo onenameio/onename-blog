@@ -10,7 +10,7 @@
   "private": true,
   "version": "0.6.2",
   "dependencies": {
-    "ghost": "0.6.2",
+    "ghost": "git+https://git@github.com/onenameio/ghost-0.6.2.git",
     "ghost-s3-storage": "~0.2.1",
     "pg": "latest"
   },
