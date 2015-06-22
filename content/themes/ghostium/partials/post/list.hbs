@@ -3,7 +3,9 @@
   <header class="post-item-header">
     {{#if image}}
     <div class="post-list-image-wrapper">
-      <img src="{{image}}" class="post-list-image">
+      <a href="{{url}}" itemprop="url" data-pjax title="{{{title}}}">
+        <img src="{{image}}" class="post-list-image">
+      </a>
     </div>
     {{/if}}
 
