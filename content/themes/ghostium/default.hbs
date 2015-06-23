@@ -5,23 +5,94 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>{{meta_title}}</title>
-
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="{{meta_description}}">
+    {{#is "index, tag, author"}} {{!-- Meta for index, tag and author contexts --}}
+      <meta property="og:type" content="website"/>
+      <meta property="og:url" content="{{@blog.url}}{{{relativeUrl}}}"/>
+      <meta property="og:site_name" content="{{@blog.title}}"/>
+      <meta name="twitter:card" content="summary">
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{meta_title}}">
-    <meta name="twitter:description" content="{{meta_description}}">
+      {{#is "index"}}
+        <title>{{@blog.title}}</title>
+        <meta property="og:title" content="{{@blog.title}}"/>
+        <meta itemprop="name" content="{{@blog.title}}"/>
+        <meta name="twitter:title" content="{{@blog.title}}">
+      {{/is}}
+      {{#is "tag"}}
+        <title>Posts with tag “{{tag.name}}” — {{@blog.title}}</title>
+        <meta property="og:title" content="Posts with tag “{{tag.name}}” — {{@blog.title}}"/>
+        <meta name="twitter:title" content="Posts with tag “{{tag.name}}” — {{@blog.title}}"/>
+        <meta itemprop="name" content="Posts with tag “{{tag.name}}” — {{@blog.title}}"/>
+      {{/is}}
+      {{#is "author"}}
+        <title>Posts by {{author.name}} — {{@blog.title}}</title>
+        <meta property="og:title" content="Posts by {{author.name}} — {{@blog.title}}"/>
+        <meta name="twitter:title" content="Posts by {{author.name}} — {{@blog.title}}"/>
+        <meta itemprop="name" content="Posts by {{author.name}} — {{@blog.title}}"/>
+      {{/is}}
+      
+      <meta property="og:description" content="{{@blog.description}}"/>
+      <meta itemprop="description" content="{{@blog.description}}"/>
+      <meta name="description" content="{{@blog.description}}"/>
+      <meta name="twitter:description" content="{{@blog.description}}"/>
+      
+      {{#if @blog.cover}}
+        <meta property="og:image" content="{{@blog.url}}{{@blog.cover}}"/>
+        <link rel="image_src" href="{{@blog.url}}{{@blog.cover}}"/>
+        <meta itemprop="image" content="{{@blog.url}}{{@blog.cover}}"/>
+        <meta name="twitter:image" content="{{@blog.url}}{{@blog.cover}}"/>
+      {{/if}}
+    {{/is}}
+    {{!-- End of index, tag and author contexts --}}
+    
+    {{#is "post, page"}}
+      {{!--  Meta for post and page contexts --}}
+      <meta property="og:type" content="article">
+      <meta property="og:url" content="{{@blog.url}}{{{relativeUrl}}}"/>
+      <meta property="og:site_name" content="{{@blog.title}}"/>
+      <meta name="twitter:card" content="summary">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{meta_title}}">
-    <meta property="og:description" content="{{meta_description}}">
+      <title>{{meta_title}} — {{@blog.title}}</title>
+      <meta itemprop="name" content="{{meta_title}} — {{@blog.title}}"/>
+      <meta property="og:title" content="{{meta_title}} — {{@blog.title}}"/>
+      <meta name="twitter:title" content="{{meta_title}} — {{@blog.title}}"/>
+
+      {{#if post.meta_description }}
+        <meta name="description" content="{{meta_description}}"/>
+        <meta itemprop="description" content="{{meta_description}}"/>
+        <meta property="og:description" content="{{meta_description}}"/>
+        <meta name="twitter:description" content="{{meta_description}}"/>
+      {{else}}
+        {{#post}}
+          <meta name="description" content="{{excerpt words="27"}}…"/>
+          <meta itemprop="description" content="{{excerpt words="27"}}…"/>
+          <meta property="og:description" content="{{excerpt words="27"}}…"/>
+          <meta name="twitter:description" content="{{excerpt words="27"}}…"/>
+        {{/post}}
+      {{/if}}
+      
+      {{#post}}
+        {{#if image}}
+          <meta property="og:image" content="{{@blog.url}}{{image}}"/>
+          <link rel="image_src" href="{{@blog.url}}{{image}}"/>
+          <meta itemprop="image" content="{{@blog.url}}{{image}}"/>
+          <meta name="twitter:image" content="{{@blog.url}}{{image}}"/>
+        {{else}}
+          {{#if @blog.cover}}
+            <meta property="og:image" content="{{@blog.url}}{{@blog.cover}}"/>
+            <link rel="image_src" href="{{@blog.url}}{{@blog.cover}}"/>
+            <meta itemprop="image" content="{{@blog.url}}{{@blog.cover}}"/>
+            <meta name="twitter:image" content="{{@blog.url}}{{@blog.cover}}"/>
+          {{/if}}
+        {{/if}}
+      {{/post}}
+
+    {{/is}} {{!--  End of post and page contexts --}}
 
     {{> custom/meta this}}
 
