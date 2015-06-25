@@ -17,9 +17,13 @@ h1,.h1,h2,.h2,h3,.h3,h4,.h4{font-family:"Open Sans","Myriad Pro","Lucida Grande"
 
 body {font-family:"ProximaNova-Light",sans-serif; font-weight:normal; font-size:1em;}
 label, input[type=text], input[type=password], input[type=email], input[type=url], input[type=date], input[type=month], input[type=time], input[type=datetime], input[type=datetime-local], input[type=week], input[type=number], input[type=search], input[type=tel], input[type=color], select, textarea, .btn, button[type=submit], button[type=reset], input[type=submit], input[type=reset], .footer, .post-meta-list {font-family:"ProximaNova-Regular",sans-serif; font-weight:normal;}
-h1, h2, h3, h4, .post-title {font-family:"ProximaNova-Semibold",sans-serif; font-weight:normal;}
+h1, h2, h3, h4, .post-title {
+    font-family:"ProximaNova-Semibold",sans-serif; font-weight:normal;
+}
 h1 {font-size:45px;}
-.post-author-name, .post-info-title {font-family:"ProximaNova-Bold",sans-serif; font-weight:700;}
+.post-author-name, .post-info-title {
+    font-family:"ProximaNova-Bold",sans-serif; font-weight:700;
+}
 .post-title {padding-bottom:55px;}
 .wrapper-container {padding-top:80px;}
 .post-footer { margin-top:80px;}
@@ -80,7 +84,11 @@ input[type=submit] {height:42px; line-height: 18.5714px; font-size: 13px; border
 input[type=email] {margin-top:3px;}
 }
 
-article {
+article p {
     font-size: 20px;
     line-height: 30px;
+}
+
+article strong {
+    font-family:'ProximaNova-Bold';
 }
